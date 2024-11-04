@@ -8,5 +8,6 @@
                 "orta.vscode-jest"
             ]
         }
-    }
+    },
+    "postCreateCommand": "npm i"
 }
