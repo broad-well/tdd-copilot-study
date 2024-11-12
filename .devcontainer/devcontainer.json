@@ -5,7 +5,8 @@
     "customizations": {
         "vscode": {
             "extensions": [
-                "orta.vscode-jest"
+                "orta.vscode-jest",
+                "GitHub.copilot"
             ]
         }
     },
