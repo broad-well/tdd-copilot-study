@@ -30,9 +30,13 @@ const visitUrl = sht.visit(ucsdKey, {
     mobile: false,
 });
 // visitUrl === 'ucsd.edu'
+sht.visit(ucsdKey, {
+    browser: 'chrome',
+    mobile: false,
+});
 
 sht.visitsTo(ucsdKey); /* -> {
-    browser: {chrome: 0, firefox: 1, safari: 0},
+    browser: {chrome: 0.5, firefox: 0.5, safari: 0},
     mobile: 0,
 } */
 ```
