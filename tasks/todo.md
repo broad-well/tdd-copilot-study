@@ -15,27 +15,22 @@ Please create a class named `TaskList` that manages a to-do list. The class shou
         - `description`: A string describing the task.
         - `completed`: A boolean indicating if the task is completed (`true` or `false`).
         - `due`: A `Date` object indicating the task's due date.
+    - *Without* sorting the entire list, the task should be inserted so the resulting list remains sorted by ascending due date (soonest to latest)
 
-3. **`removeTask(task)`**
-    - A member function that takes a task object and removes the first instance of that task from the task list.
-    - If no instance is found, throw an `Error`.
-
-4. **`removeTaskAt(index)`**
+3. **`removeTaskAt(index)`**
     - A member function that takes an index specifying the position of the task to remove.
     - If the index is out of bounds, throw a `RangeError`.
 
-5. **`markTask(task)`**
-    - A member function that takes a task object and marks the first instance of the task as complete.
-    - If no instance is found, throw an `Error`.
-    - If the task is already marked complete, throw an `Error`.
-
-6. **`markTaskAt(index)`**
+4. **`markTaskAt(index)`**
     - A member function that takes an index specifying the position of the task to mark as complete.
     - If the index is out of bounds, throw a `RangeError`.
     - If the task is already marked complete, throw an `Error`.
 
-7. **`orderByDate()`**
-    - A member function that takes no arguments and orders the tasks in the list by their `due` date, in ascending order.
+5. **`changeDueDateAt(index, date)`**
+    - A member function that takes a Date object specifying the new due date of the task
+    - If the index is out of bounds, throw a `RangeError`.
+    - If the task is already marked complete, throw an `Error`.
+    - *Without* sorting the entire list, the task should be reinserted into the correct position to maintain ascending due date ordering.
 
 ## Examples
 
@@ -55,6 +50,9 @@ myTasks.markTaskAt(0);
 
 myTasks.removeTaskAt(0);
 // myTasks is now empty
+
+myTasks.changeDueDateAt(0, new Date('2024-10-20'));
+// The date has been changed 
 ```
 
 ### Initializing with Multiple Tasks
@@ -85,13 +83,8 @@ myTasks.removeTaskAt(0);
 // myTasks now contains 2 tasks
 ```
 
-### Ordering Tasks by Due Date
-```javascript
-myTasks.orderByDate();
-// Tasks are now sorted by due date in ascending order
-```
-
 ### Notes
 - Task objects must conform to the specified structure (`description`, `completed`, and `due`).
 - Ensure all errors are descriptive to aid debugging and usability.
 - Implement error handling for edge cases such as invalid indices or duplicate task descriptions.
+- Ascending due date order must always be maintained. 
