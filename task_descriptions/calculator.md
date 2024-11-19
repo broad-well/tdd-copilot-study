@@ -4,10 +4,7 @@ Please create a class named `PrefixCalculator` that implements a prefix calculat
 
 ## Implementation Requirements
 
-1. **Constructor**
-    - Implement a no-argument constructor that initializes the `PrefixCalculator` object.
-
-3. **Helper Functions**
+1. **Helper Functions**
     - Create the following utility functions as part of the class or as separate internal helpers:
         1. **`isOperator(token)`**:
             - Returns `true` if `token` is one of the valid operators (`+`, `-`, `*`, `/`).
