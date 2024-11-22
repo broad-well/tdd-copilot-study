@@ -80,3 +80,5 @@ class PrefixCalculator {
         return stack.pop();
     }
 }
+
+module.exports = PrefixCalculator;

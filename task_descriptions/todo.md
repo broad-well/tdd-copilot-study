@@ -1,6 +1,10 @@
 # To-Do List Manager
 
-Please create a class named `TaskList` that manages a to-do list. The class should provide the following functionalities:
+Please write an API for a class named `TodoList` that manages a to-do list ordered by due date. You should be able to add/remove items from the list, and modify existing items. 
+
+The API can be written in plain text. It should include a list of public method headers, their arguments, and a short description of what each method does. 
+
+Please create a class named `TodoList` that manages a to-do list. The class should provide the following functionalities:
 
 ## Implementation Requirements
 

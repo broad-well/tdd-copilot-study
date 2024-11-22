@@ -1,51 +1,81 @@
 class TodoList {
-    constructor(initialTasks = []) {
-        // Validate and initialize the task list
-        this.tasks = initialTasks.sort((a, b) => a.due - b.due); // Ensure tasks are sorted by due date
+    constructor(tasks = []) {
+      if (!Array.isArray(tasks)) {
+        throw new Error("Tasks must be an array of task objects.");
+      }
+      this.tasks = tasks.sort((a, b) => a.due - b.due);
     }
-
-    // Helper: Validate a task object
-    static validateTask(task) {
-
-    }
-
-    // Add a new task and insert it in the correct position
+  
     addTask(task) {
-
+      if (!this.#isValidTask(task)) {
+        throw new Error("Invalid task object. Must have 'description', 'completed', and 'due'.");
+      }
+  
+      // Find the correct position to insert the task (binary search for efficiency)
+      let index = this.#findInsertIndex(task.due);
+      this.tasks.splice(index, 0, task); // Insert task at the correct position
     }
-
-    // Remove a task at a specific index
+  
     removeTaskAt(index) {
-
+      if (index < 0 || index >= this.tasks.length) {
+        throw new RangeError("Index out of bounds.");
+      }
+      this.tasks.splice(index, 1);
     }
-
-    // Mark a task as complete at a specific index
+  
     markTaskAt(index) {
-
+      if (index < 0 || index >= this.tasks.length) {
+        throw new RangeError("Index out of bounds.");
+      }
+      const task = this.tasks[index];
+      if (task.completed) {
+        throw new Error("Task is already marked as complete.");
+      }
+      task.completed = true;
     }
-
-    // Change the due date of a task and reinsert it in the correct position
-    changeDueDateAt(index, newDueDate) {
-        
+  
+    changeDueDateAt(index, date) {
+      if (!(date instanceof Date)) {
+        throw new Error("Invalid date object.");
+      }
+      if (index < 0 || index >= this.tasks.length) {
+        throw new RangeError("Index out of bounds.");
+      }
+      const task = this.tasks[index];
+      if (task.completed) {
+        throw new Error("Cannot change the due date of a completed task.");
+      }
+  
+      // Remove task and reinsert at the correct position
+      this.tasks.splice(index, 1);
+      task.due = date;
+      let newIndex = this.#findInsertIndex(date);
+      this.tasks.splice(newIndex, 0, task);
     }
-}
-
-// Example Usage
-const myTasks = new TodoList([
-    { description: 'Submit report', completed: false, due: new Date('2024-12-01') },
-    { description: 'Prepare slides', completed: false, due: new Date('2024-11-15') }
-]);
-
-// Add a new task
-myTasks.addTask({ description: 'Finish assignment', completed: false, due: new Date('2024-11-10') });
-console.log(myTasks.tasks);
-
-// Mark a task as complete
-myTasks.markTaskAt(1); // Marks 'Prepare slides' as complete
-
-// Change the due date of a task
-myTasks.changeDueDateAt(0, new Date('2024-12-05')); // Moves 'Finish assignment' to the correct position
-
-// Remove a task
-myTasks.removeTaskAt(1); // Removes 'Prepare slides'
-console.log(myTasks.tasks);
+  
+    // Private helper method to validate task object
+    #isValidTask(task) {
+      return (
+        typeof task.description === "string" &&
+        typeof task.completed === "boolean" &&
+        task.due instanceof Date
+      );
+    }
+  
+    // Private helper method to find the correct insert position
+    #findInsertIndex(date) {
+      let low = 0, high = this.tasks.length;
+      while (low < high) {
+        let mid = Math.floor((low + high) / 2);
+        if (this.tasks[mid].due < date) {
+          low = mid + 1;
+        } else {
+          high = mid;
+        }
+      }
+      return low;
+    }
+  }
+  
+  module.exports = TodoList;
+  
