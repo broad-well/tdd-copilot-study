@@ -25,11 +25,15 @@ class URLShortener {
         if (desiredHash !== undefined && typeof desiredHash !== "string") {
             throw new Error("Desired hash must be a string, if specified");
         }
-
+    
+        if (desiredHash && desiredHash in this.urls) {
+            throw new Error("Desired hash is already in use");
+        }
+    
         const hash = this.#generateRandomHash(desiredHash);
         this.urls[hash] = { target: url, count: 0 };
         return hash;
-    }
+    }    
 
     /**
      * Resolve a shortened hash to find its associated URL.
