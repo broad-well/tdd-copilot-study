@@ -1,3 +1,5 @@
+// TO RUN THIS FILE: npm test -t /workspaces/tdd-copilot-study/task_descriptions/__tests__/shortener_tests.js
+
 const URLShortener = require('/workspaces/tdd-copilot-study/implementations/shortener.js');
 
 describe('URLShortener', () => {

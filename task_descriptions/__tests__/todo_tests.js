@@ -1,3 +1,5 @@
+// TO RUN THIS FILE: npm test -t /workspaces/tdd-copilot-study/task_descriptions/__tests__/todo_tests.js
+
 const TodoList = require('/workspaces/tdd-copilot-study/implementations/todo.js');
 
 describe('TodoList', () => {
