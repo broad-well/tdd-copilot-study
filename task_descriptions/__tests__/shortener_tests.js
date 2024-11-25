@@ -1,7 +1,7 @@
 const URLShortener = require('/workspaces/tdd-copilot-study/implementations/shortener.js');
 
 describe('URLShortener', () => {
-  let shtn;
+  let short;
 
   beforeEach(() => {
     shtn = new URLShortener();
