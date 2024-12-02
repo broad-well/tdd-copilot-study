@@ -1,4 +1,4 @@
-// TO RUN THIS FILE: npm test -t /workspaces/tdd-copilot-study/task_descriptions/__tests__/shortener_tests.js
+// Please write psuedocode for the TodoList test suite (do not run the tests). Please make your tests as comprehensive as possible.
 
 const URLShortener = require('/workspaces/tdd-copilot-study/implementations/shortener.js');
 
